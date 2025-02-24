@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Filme</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        #movie-details {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #movie-poster {
+            max-width: 200px;
+            height: auto;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        #movie-title {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center; /* Centraliza o título */
+        }
+
+        #movie-info {
+            display: flex;
+            align-items: flex-start; /* Alinha os itens no topo */
+        }
+
+        #movie-overview {
+            color: #666;
+            line-height: 1.6;
+            margin-left: 30px;
+            margin-bottom: 15px;
+            flex: 2; /* Ocupa mais espaço */
+            padding-right: 20px; /* Espaço entre a sinopse e a nota */
+        }
+
+        #movie-rating {
+            font-size: 30px;
+            font-weight: bold;
+
+            margin-left: 30px;
+            color: #960;
+            flex: 1; /* Ocupa menos espaço */
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #ddd;
+            text-align: center;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html">Voltar para a Pesquisa</a>
+
+    <div id="movie-details">
+        <h1 id="movie-title"></h1>
+        <div id="movie-info">
+            <img id="movie-poster" src="" alt="Poster do Filme">
+            <div>
+                <p id="movie-overview"></p>
+                <p id="movie-rating"></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Detalhes do Filme</p>
+    </footer>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const movie = JSON.parse(decodeURIComponent(params.get('movie')));
+
+        document.getElementById('movie-title').textContent = movie.title;
+        document.getElementById('movie-poster').src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+        document.getElementById('movie-poster').alt = movie.title;
+        document.getElementById('movie-overview').textContent = movie.overview;
+        document.getElementById('movie-rating').textContent = `Nota IMDB: ${movie.vote_average}`;
+    </script>
+</body>
+</html>
